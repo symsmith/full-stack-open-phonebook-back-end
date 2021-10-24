@@ -1,0 +1,11 @@
+{
+  "name": "full-stack-open-phonebook-back-end",
+  "version": "1.0.0",
+  "description": "Back-end part of the phonebook app for the Full Stack Open Course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Syméon Smith",
+  "license": "ISC"
+}
