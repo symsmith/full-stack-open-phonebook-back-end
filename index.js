@@ -51,9 +51,12 @@ const generateId = () => Math.floor(Math.random() * RANGE)
 
 app.post("/api/persons", (req, res) => {
   const body = req.body
-  console.log(body)
+
   if (!body.name || !body.number) {
     return res.status(400).json({ error: "provide a name and a number" })
+  }
+  if (persons.find((p) => p.name.toLowerCase() === body.name.toLowerCase())) {
+    return res.status(400).json({ error: "name must be unique" })
   }
 
   const person = {
@@ -63,7 +66,6 @@ app.post("/api/persons", (req, res) => {
   }
 
   persons = persons.concat(person)
-
   res.json(person)
 })
 
