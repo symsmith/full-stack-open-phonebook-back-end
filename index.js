@@ -1,5 +1,6 @@
 const express = require("express")
-const app = express(express.json())
+const app = express()
+app.use(express.json())
 
 let persons = [
   {
@@ -42,6 +43,28 @@ app.get("/api/persons/:id", (req, res) => {
   } else {
     res.status(404).end()
   }
+})
+
+const RANGE = 1000000000
+
+const generateId = () => Math.floor(Math.random() * RANGE)
+
+app.post("/api/persons", (req, res) => {
+  const body = req.body
+  console.log(body)
+  if (!body.name || !body.number) {
+    return res.status(400).json({ error: "provide a name and a number" })
+  }
+
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number
+  }
+
+  persons = persons.concat(person)
+
+  res.json(person)
 })
 
 app.delete("/api/persons/:id", (req, res) => {
