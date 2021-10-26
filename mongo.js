@@ -10,7 +10,7 @@ if (
 }
 
 const password = process.argv[2]
-const url = `mongodb+srv://fullstack-open:${password}@cluster0.a3svv.mongodb.net/phonebook?retryWrites=true&w=majority`
+const url = `mongodb+srv://fullstack-open:${password}@cluster0.a3svv.mongodb.net/phonebook_test?retryWrites=true&w=majority`
 
 mongoose.connect(url)
 
