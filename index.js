@@ -14,11 +14,15 @@ app.use(
 app.use(express.json())
 app.use(express.static("build"))
 
-app.get("/info", (req, res) => {
-  res.send(
-    `<p>Phonebook has info for ${persons.length} people</p>
+app.get("/info", (req, res, next) => {
+  Person.countDocuments()
+    .then((count) =>
+      res.send(
+        `<p>Phonebook has info for ${count} people</p>
      <p>${new Date()}</p>`
-  )
+      )
+    )
+    .catch((error) => next(error))
 })
 
 app.get("/api/persons", (req, res, next) => {
