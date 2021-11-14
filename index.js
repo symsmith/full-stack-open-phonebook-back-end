@@ -3,7 +3,7 @@ const express = require("express")
 const morgan = require("morgan")
 const Person = require("./models/person")
 const app = express()
-morgan.token("show_data", (req, res) => {
+morgan.token("show_data", (req) => {
   return Object.entries(req.body).length !== 0 ? JSON.stringify(req.body) : " "
 })
 app.use(
@@ -14,7 +14,7 @@ app.use(
 app.use(express.json())
 app.use(express.static("build"))
 
-app.get("/info", (req, res, next) => {
+app.get("/info", (_req, res, next) => {
   Person.countDocuments()
     .then((count) =>
       res.send(
